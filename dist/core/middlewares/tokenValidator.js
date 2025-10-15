@@ -16,7 +16,6 @@ class ValidatorJwt {
             try {
                 let token = null;
                 const authHeader = req.headers.authorization;
-                console.log("awdawdawdawdawdawwwwwwwwwwwwwww", authHeader);
                 if (authHeader && authHeader.startsWith("Bearer ")) {
                     token = authHeader.split(" ")[1];
                 }

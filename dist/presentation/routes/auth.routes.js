@@ -12,5 +12,6 @@ const router = (0, express_1.Router)();
 const controller = new AuthControllers_1.AuthController(new User_service_1.UserService(new User_repo_1.UsersRepository(), new AuthUser_repo_1.AuthUserRepository()));
 router.post("/register", controller.register);
 router.post("/login", controller.login);
-router.post("/logout", controller.logout);
+router.post("/logout", exports.JwtValidator.validateJwt, controller.logout);
+router.get("/session", exports.JwtValidator.validateJwt, controller.getSession);
 exports.default = router;

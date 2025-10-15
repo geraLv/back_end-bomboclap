@@ -13,6 +13,6 @@ const controller = new AuthController(
 
 router.post("/register", controller.register);
 router.post("/login", controller.login);
-router.post("/logout", controller.logout);
-
+router.post("/logout",JwtValidator.validateJwt, controller.logout);
+router.get("/session", JwtValidator.validateJwt, controller.getSession);
 export default router;

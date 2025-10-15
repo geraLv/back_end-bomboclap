@@ -35,7 +35,6 @@ export class ValidatorJwt {
       let token: string | null = null;
 
       const authHeader = req.headers.authorization;
-      console.log("awdawdawdawdawdawwwwwwwwwwwwwww", authHeader);
 
       if (authHeader && authHeader.startsWith("Bearer ")) {
         token = authHeader.split(" ")[1];

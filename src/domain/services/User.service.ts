@@ -73,7 +73,7 @@ export class UserService {
       data.password
     );
 
-    const token = this.jwtValidator.createJwt(user.id);
+    const token = await this.jwtValidator.createJwt(user.id);
 
     return { user: this.toPublic(user), token, refreshtoken };
   }

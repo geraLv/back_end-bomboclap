@@ -45,13 +45,19 @@ export class AuthController {
     }
   };
 
-  hola = async (_req: Request, res: Response) => {
-    res.json({ message: "hola" });
-  };
-
   private toAppError(err: unknown) {
     if ((err as any)?.issues)
       return new AppError("Validacion fallida", 400, (err as any).issues);
     return err as any;
-  }
+  };
+
+  getSession = (req:Request, res:Response) => {
+    try {
+        res.status(200).json({ message: "Session Activa", user: req.cookies.user });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: 'Error en el servidor' }); 
+    }
+};
+
 }

@@ -43,7 +43,7 @@ class UserService {
         if (!user)
             throw new AppErrors_1.AppError("No existe este email", 401);
         const refreshtoken = await this.authUsers.signIn(normalizedEmail, data.password);
-        const token = this.jwtValidator.createJwt(user.id);
+        const token = await this.jwtValidator.createJwt(user.id);
         return { user: this.toPublic(user), token, refreshtoken };
     }
     async updateProfile(requesterId, targetUserId, data) {

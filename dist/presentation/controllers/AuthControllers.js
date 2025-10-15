@@ -40,8 +40,14 @@ class AuthController {
                 next(this.toAppError(err));
             }
         };
-        this.hola = async (_req, res) => {
-            res.json({ message: "hola" });
+        this.getSession = (req, res) => {
+            try {
+                res.status(200).json({ message: "Session Activa", user: req.cookies.user });
+            }
+            catch (error) {
+                console.log(error);
+                return res.status(500).json({ message: 'Error en el servidor' });
+            }
         };
     }
     toAppError(err) {
@@ -49,5 +55,6 @@ class AuthController {
             return new AppErrors_1.AppError("Validacion fallida", 400, err.issues);
         return err;
     }
+    ;
 }
 exports.AuthController = AuthController;
