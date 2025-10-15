@@ -8,7 +8,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
     "_run": "npm run build && npm run start",
-    "dev": "nodemon --watch src --ext ts,js,json --exec \"npm run _run\""
+    "dev": "nodemon --watch src --ext ts,js,json --exec \"npm run _run\"",
+    "seed:users": "npm run build && node dist/scripts/seed-users.js"
   },
   "keywords": [],
   "author": "",

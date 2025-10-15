@@ -12,6 +12,8 @@ export class AuthController {
   register = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const parsed = registerSchema.parse(req.body);
+
+      console.log(parsed);
       const result = await this.userService.register(parsed);
       res.status(201).json(result);
     } catch (err) {
@@ -49,15 +51,16 @@ export class AuthController {
     if ((err as any)?.issues)
       return new AppError("Validacion fallida", 400, (err as any).issues);
     return err as any;
-  };
+  }
 
-  getSession = (req:Request, res:Response) => {
+  getSession = (req: Request, res: Response) => {
     try {
-        res.status(200).json({ message: "Session Activa", user: req.cookies.user });
+      res
+        .status(200)
+        .json({ message: "Session Activa", user: req.cookies.user });
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: 'Error en el servidor' }); 
+      console.log(error);
+      return res.status(500).json({ message: "Error en el servidor" });
     }
-};
-
+  };
 }

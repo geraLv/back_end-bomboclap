@@ -21,6 +21,7 @@ class AuthUserRepository {
         this.serviceRol = database_1.DataBase.obtenerInstancia().service_rol();
     }
     async create(authUser) {
+        console.log("awdawdawdawd", authUser);
         const { data, error } = await this.serviceRol.auth.admin.createUser({
             email: authUser.email,
             password: authUser.password,

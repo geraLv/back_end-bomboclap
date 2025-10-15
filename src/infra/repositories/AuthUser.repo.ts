@@ -30,6 +30,7 @@ export class AuthUserRepository implements IAuthUserRepository {
   private serviceRol = DataBase.obtenerInstancia().service_rol();
 
   async create(authUser: AuthUser): Promise<User["id"]> {
+    console.log("awdawdawdawd", authUser);
     const { data, error } = await this.serviceRol.auth.admin.createUser({
       email: authUser.email,
       password: authUser.password,

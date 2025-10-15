@@ -9,6 +9,7 @@ class AuthController {
         this.register = async (req, res, next) => {
             try {
                 const parsed = user_validator_1.registerSchema.parse(req.body);
+                console.log(parsed);
                 const result = await this.userService.register(parsed);
                 res.status(201).json(result);
             }
@@ -42,11 +43,13 @@ class AuthController {
         };
         this.getSession = (req, res) => {
             try {
-                res.status(200).json({ message: "Session Activa", user: req.cookies.user });
+                res
+                    .status(200)
+                    .json({ message: "Session Activa", user: req.cookies.user });
             }
             catch (error) {
                 console.log(error);
-                return res.status(500).json({ message: 'Error en el servidor' });
+                return res.status(500).json({ message: "Error en el servidor" });
             }
         };
     }
@@ -55,6 +58,5 @@ class AuthController {
             return new AppErrors_1.AppError("Validacion fallida", 400, err.issues);
         return err;
     }
-    ;
 }
 exports.AuthController = AuthController;
