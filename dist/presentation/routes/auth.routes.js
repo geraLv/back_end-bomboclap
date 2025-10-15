@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.JwtValidator = void 0;
+const express_1 = require("express");
+const AuthControllers_1 = require("../controllers/AuthControllers");
+const User_service_1 = require("../../domain/services/User.service");
+const User_repo_1 = require("../../infra/repositories/User.repo");
+const AuthUser_repo_1 = require("../../infra/repositories/AuthUser.repo");
+const tokenValidator_1 = require("../../core/middlewares/tokenValidator");
+exports.JwtValidator = new tokenValidator_1.ValidatorJwt();
+const router = (0, express_1.Router)();
+const controller = new AuthControllers_1.AuthController(new User_service_1.UserService(new User_repo_1.UsersRepository(), new AuthUser_repo_1.AuthUserRepository()));
+router.post("/register", controller.register);
+router.post("/login", controller.login);
+router.post("/logout", controller.logout);
+exports.default = router;
